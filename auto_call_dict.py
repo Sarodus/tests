@@ -3,7 +3,7 @@ import inspect
 class AutoCallStruct(dict):
     """
     Dictionary, also accesible with attributes, that automatically calls
-    the value if it's a function without params.
+    the value if it's a function without arguments.
     AutoCallStruct(
         param1=lambda: 'called!',
     ).param1
@@ -36,8 +36,3 @@ print d['qwe']  # return called() function
 print d.zxc  # return function, because it have args
 d.hello = lambda: 'world!'
 print d.hello
-
-setattr(d, 'hotel.canal.codigo', lambda: 555)
-print getattr(d, 'hotel.canal.codigo', None)
-print d.get('hotel.canal.codigo')
-

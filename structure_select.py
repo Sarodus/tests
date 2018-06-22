@@ -1,23 +1,22 @@
 def select(query, structure):
     selector = structure
     for q in query.split('.'):
+        if structure is None:
+            break
 
         if q.isdigit() and '__iter__' in dir(structure):
             try:
-                structure = selector = structure[int(q)]
+                structure = structure[int(q)]
             except KeyError as e:
                 structure = None
 
         elif 'get' in dir(structure):
-            structure = selector = structure.get(q)
+            structure = structure.get(q)
 
         else:
-            structure = selector = None
+            structure = None
 
-        if structure is None:
-            break
-
-    return selector
+    return structure
 
 
 print 'A)', select('a.x.456', {'a': {'x': 1}})
